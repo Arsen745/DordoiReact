@@ -1,0 +1,23 @@
+.buttons-text {
+    height: 100vh;
+    overflow-y: scroll;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-right: 1px solid silver;
+
+    h1 {
+        margin-bottom: 10px;
+        font-size: 16px;
+        font-family: Arial, Helvetica, sans-serif;
+        border: 1px solid transparent;
+        padding: 8px 15px;
+        transition: all 0.3s;
+    }
+    h1:hover {
+        border-bottom: 1px solid rgb(0, 81, 255);
+        border-top: 1px solid rgb(0, 81, 255);
+    }
+}
+.buttons-text::-webkit-scrollbar {
+    width: 0px;
+}

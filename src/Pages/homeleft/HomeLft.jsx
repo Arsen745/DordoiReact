@@ -1,9 +1,12 @@
 import React from 'react'
 import './HomeLeft.css'
+import Right from '../../component/right/Right'
 
 const HomeLft = () => {
   return (
-    <div className='container'>HomeLft</div>
+    <div className='container'>
+        <Right/>    
+    </div>
   )
 }
 
