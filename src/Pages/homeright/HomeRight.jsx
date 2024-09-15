@@ -9,6 +9,8 @@ const HomeRight = () => {
       <Card />
       <Card />
       <Card />
+      <Card />
+      <Card />
     </div>
   )
 }
