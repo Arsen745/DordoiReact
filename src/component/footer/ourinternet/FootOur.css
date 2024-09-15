@@ -1,6 +1,8 @@
 .foot-our {
-    border: 1px solid red;
     h1 {
         margin-bottom: 10px;
+    }
+    h3 {
+        color: rgb(116, 114, 114);;
     }
 }

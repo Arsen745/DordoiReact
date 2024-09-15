@@ -1,0 +1,22 @@
+.foot-end {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    h5 {
+        font-style: italic;
+    }
+    .hr {
+        display: flex;
+        justify-content: center;
+        width: 917px;
+        margin: auto;
+        max-width: 1600px;
+        border: 1px solid black;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    h4 {
+        margin-bottom: 20px;
+    }
+}
