@@ -1,0 +1,41 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.content-header {
+    border: 1px solid red;
+    max-width: 1920px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 100px;
+    align-items: center;
+    .logo {
+        color: red;
+        font-size: 120px;
+    }
+    .form {
+        input {
+            padding: 8px 20px;
+            border: none;
+            border-bottom: 1px solid black;
+            outline: none;
+            background-color: #f1f1f1;
+        }
+        button {
+            font-size: 18px;
+            padding: 6px 15px;
+            border: none;
+            color: white;
+            background-color: green;
+            border: 1px solid green;
+        }
+    }
+    .cart {
+        font-size: 30px;
+        color: red;
+
+    }
+}
