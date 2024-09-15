@@ -1,0 +1,10 @@
+.section {
+    display: flex;
+    .s-left {
+        width: 30%;
+    }
+    .s-right {
+        width: 70%;
+        border: 1px solid blue;
+    }
+}
