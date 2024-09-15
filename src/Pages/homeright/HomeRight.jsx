@@ -1,10 +1,14 @@
-import React from 'react'
+import Card from './card/Card'
 import './HomeRight.css'
 const HomeRight = () => {
   return (
-    <div className='container'>
-      <h1>Arsen</h1>
-
+    <div className='container card'>
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
     </div>
   )
 }

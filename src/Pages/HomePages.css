@@ -1,9 +1,11 @@
 .section {
     display: flex;
     .s-left {
-        width: 30%;
+        width: 23%;
     }
     .s-right {
         width: 70%;
+        width: 78%;
+        /* border: 1px solid blue; */
     }
 }
