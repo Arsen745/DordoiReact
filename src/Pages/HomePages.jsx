@@ -6,17 +6,17 @@ import './HomePages.css'
 const HomePages = () => {
   return (
     <div>
-        <Header/>
-        <div className="section container">
-          <div className="s-left">
+      <Header />
+      <div className="section container">
+        <div className="s-left">
 
-          <HomeLft/>
-          </div>
-          <div className="s-right">
-
-          <HomeRight/>
-          </div>
+          <HomeLft />
         </div>
+        <div className="s-right">
+
+          <HomeRight />
+        </div>
+      </div>
     </div>
   )
 }
