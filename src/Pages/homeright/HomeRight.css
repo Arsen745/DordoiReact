@@ -4,10 +4,11 @@
 .card {
     display: flex;
     width: 100%;
-    gap: 10px;
+    gap: 5px;
     flex-wrap: wrap;
     height: 100vh;
     overflow-x: scroll;
+    padding-left: 5px;
 }
 .card::-webkit-scrollbar {
     width: 0;

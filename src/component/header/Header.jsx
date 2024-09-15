@@ -2,6 +2,7 @@ import React from 'react'
 import { SiLogitech } from "react-icons/si";
 import { BsCart4 } from "react-icons/bs";
 import './Header.css'
+import { NavLink } from 'react-router-dom';
 
 const Header = () => {
     return (
@@ -15,7 +16,9 @@ const Header = () => {
                     <button>Искать</button>
                 </div>
                 <div className="cart">
-                    <BsCart4 />
+                    <NavLink to='/about'>
+                        <BsCart4 />
+                    </NavLink>
                 </div>
             </div>
         </div>
