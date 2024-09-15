@@ -8,6 +8,7 @@
     flex-wrap: wrap;
     height: 100vh;
     overflow-x: scroll;
+    border-bottom: 1px solid black;
 }
 .card::-webkit-scrollbar {
     width: 0;

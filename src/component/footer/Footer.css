@@ -1,5 +1,16 @@
-.foot {
-    border-top: 1px solid #000;
-    margin-bottom: 400px;
+.foot-import {
+    max-width: 1600px;
+    width: 100%;
+    margin: auto;
+    border: 1px solid red;
     margin-top: 20px;
 }
+
+.foot {
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #000;
+    margin-bottom: 400px;
+    padding: 30px 300px;
+}
+

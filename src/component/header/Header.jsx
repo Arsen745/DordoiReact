@@ -1,4 +1,3 @@
-import React from 'react'
 import { SiLogitech } from "react-icons/si";
 import { BsCart4 } from "react-icons/bs";
 import './Header.css'
