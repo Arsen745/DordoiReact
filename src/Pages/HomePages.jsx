@@ -2,6 +2,7 @@ import Header from '../component/header/Header'
 import HomeLft from './homeleft/HomeLft'
 import HomeRight from './homeright/HomeRight'
 import './HomePages.css'
+import Footer from '../component/footer/Footer'
 
 const HomePages = () => {
   return (
@@ -17,6 +18,7 @@ const HomePages = () => {
           <HomeRight />
         </div>
       </div>
+        <Footer />
     </div>
   )
 }
