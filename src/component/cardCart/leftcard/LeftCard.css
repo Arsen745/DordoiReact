@@ -1,0 +1,12 @@
+.card-left {
+    margin-bottom: 20px;
+    /* border: 1px solid red; */
+    width: 380px;
+    text-align: center;
+    img {
+        width: 450px;
+        margin-top: 50px;
+        margin-bottom: 50px;
+        /* border: 1px solid red; */
+    }
+}
