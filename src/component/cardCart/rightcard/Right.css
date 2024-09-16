@@ -1,0 +1,46 @@
+.data-cart {
+    width: 380px;
+    padding: 20px;
+    /* border: 1px solid red; */
+}
+
+.data-card {
+    .title1 {
+        display: flex;
+        font-size: 20px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        span {
+            color: blue;
+            font-size: 24px;
+        }
+    }
+}
+.btn-card {
+    text-align: center;
+    margin-bottom: 10px;
+    .button1 {
+        width: 350px;
+        height: 30px;
+        border: none;
+        border-radius: 10px;
+        background-color: blue;
+        color: white;
+        margin-bottom: 20px;
+    }
+    .button1:hover {
+        background-color: darkblue;
+    }
+    .button2 {
+        width: 350px;
+        height: 30px;
+        border: none;
+        border-radius: 10px;
+        background-color: red;
+        color: white;
+        margin-bottom: 20px;
+    }
+    .button2:hover {
+        background-color: darkred;
+    }
+}

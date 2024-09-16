@@ -1,0 +1,12 @@
+.card-cart {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border: 1px solid black;
+}
+
+.hr {
+    border: 1px solid black;
+    height: 500px;
+    margin-right: -50px;
+}

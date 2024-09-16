@@ -1,14 +1,16 @@
+import './CardCart.css'
+import LeftCard from './leftcard/LeftCard'
+import RightCard from './rightcard/RightCard'
 
-import { textFieldClasses } from '@mui/material'
+
+const CardCart = ({image, text, country, description, price, id, onDelete}) => {
 
 
-const CardCart = ({text, image, price}) => {
-
-    
   return (
-    <div>{text}
-        <h1>{price}</h1>
-        <img src={image} alt="" />
+    <div className='card-cart'>
+      <LeftCard image={image}/>
+      <div className="hr"></div>
+      <RightCard text={text} country={country} description={description} price={price} id={id} onDelete={onDelete}/>
     </div>
   )
 }
