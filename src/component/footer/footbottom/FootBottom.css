@@ -5,17 +5,14 @@
     align-items: center;
     h5 {
         font-style: italic;
+        border-bottom: 1px solid silver;
+        width: 100%;
+        text-align: center;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
     }
-    .hr {
-        display: flex;
-        justify-content: center;
-        width: 917px;
-        margin: auto;
-        max-width: 1600px;
-        border: 1px solid black;
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
+
+    
     h4 {
         margin-bottom: 20px;
     }

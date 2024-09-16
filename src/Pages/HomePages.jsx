@@ -3,17 +3,19 @@ import HomeLft from './homeleft/HomeLft'
 import HomeRight from './homeright/HomeRight'
 import './HomePages.css'
 import Footer from '../component/footer/Footer'
+import { useState } from 'react'
 
 const HomePages = () => {
+  const [spin, setSpin] = useState(false)
   return (
     <div>
       <Header />
       <div className="section container">
         <div className="s-left">
-          <HomeLft />
+          <HomeLft/>
         </div>
         <div className="s-right">
-          <HomeRight />
+          <HomeRight/>
         </div>
       </div>
         <Footer />

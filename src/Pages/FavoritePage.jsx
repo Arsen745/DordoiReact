@@ -1,15 +1,92 @@
-import React from 'react'
-import Header from '../component/header/Header'
-import Footer from '../component/footer/Footer'
+import React, { useEffect, useState } from 'react';
+import Header from '../component/header/Header';
+import Footer from '../component/footer/Footer';
+import CardCart from '../component/cardCart/CardCart'; 
+import { Spin, Flex } from 'antd'; 
+import index from '../api/index'
 
 const FavoritePage = () => {
-    return (
-        <div className='container'>
-            <Header />
-            <h1>Kerezbekov Arsen</h1>
-            <Footer />
-        </div>
-    )
-}
+  const [data, setData] = useState([]);
+  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(true);
 
-export default FavoritePage
+  useEffect(() => {
+    const storedData = JSON.parse(localStorage.getItem('favoriteData')); 
+
+    if (!storedData || storedData.length === 0) {
+      setError('Ваше избранное пустое');
+      setLoading(false);
+      return;
+    }
+
+    const fetchFavoriteData = async () => {
+      try {
+        const results = await Promise.all(
+          storedData.map(async (el) => {
+            const response = await index.Cart(el.value, el.id); 
+            return { ...response, id: el.id };
+            
+          })
+        );
+        setData(results);
+      } catch (error) {
+        setError('Ошибка при загрузке данных избранного');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchFavoriteData();
+  }, []);
+
+  const handleDelete = (id) => {
+    const newData = data.filter((item) => item.id !== id);
+    setData(newData);
+
+    if (newData.length === 0) {
+      setError('Ваше избранное пустое');
+    }
+
+    const updatedLocalStorage = JSON.parse(localStorage.getItem('favoriteData')).filter((el) => el.id !== id);
+    localStorage.setItem('favoriteData', JSON.stringify(updatedLocalStorage));
+    window.dispatchEvent(new Event('storage'));
+
+  };
+
+  return (
+    <div className='container'>
+      <Header />
+
+      <div className="flex1-container-favorite">
+        {loading ? (
+          <Flex gap="middle" className='spinner'>
+            <Spin tip="Загрузка..." size="large" />
+          </Flex>
+        ) : (
+          <>
+            {data.length > 0 ? (
+              data.map((response, index) => (
+                <CardCart
+                  key={index}
+                  id={response.id}
+                  text={response.name}
+                  image={response.image}
+                  price={response.price}
+                  description={response.description}
+                  country={response.country}
+                  onDelete={handleDelete} 
+                />
+              ))
+            ) : (
+              <p className='spinner'>{error}</p>
+            )}
+          </>
+        )}
+      </div>
+
+      <Footer />
+    </div>
+  );
+};
+
+export default FavoritePage;

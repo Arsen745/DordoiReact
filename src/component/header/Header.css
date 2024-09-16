@@ -16,8 +16,11 @@
     align-items: center;
     background-color: white;
     .logo {
-        color: rgb(0, 81, 255);
-        font-size: 120px;
+        .navlink {
+
+            font-size: 120px;
+            color: rgb(0, 81, 255);
+        }
     }
     .form {
         input {
@@ -56,6 +59,9 @@
             top: 0;
             right: 0;
             color: red;
+        }
+        .icon-header {
+            color:rgb(0, 81, 255);
         }
     }
 }

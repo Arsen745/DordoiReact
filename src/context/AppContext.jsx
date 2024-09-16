@@ -1,18 +1,22 @@
-import {createContext, useState} from 'react' 
+import { createContext, useEffect, useState } from 'react';
 
 export const CONTEXT = createContext();
 
-const AppContext = ({children}) => {
-    const [dataContext, setDataContext] = useState(null)
-    const context = {
-        dataContext, 
-        setDataContext
-    }
+const AppContext = ({ children }) => {
+  const [dataContext, setDataContext] = useState(null);
+
+  const context = {
+    dataContext,
+    setDataContext,
+
+  };
+
+
   return (
     <CONTEXT.Provider value={context}>
-        {children}
+      {children}
     </CONTEXT.Provider>
-  )
-}
+  );
+};
 
-export default AppContext
+export default AppContext;

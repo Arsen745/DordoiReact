@@ -16,20 +16,22 @@ const Header = () => {
     };
 
     useEffect(() => {
-        updateCounts(); 
+        updateCounts();
 
         window.addEventListener('storage', updateCounts);
 
         return () => {
             window.removeEventListener('storage', updateCounts);
         };
-    }, []); 
+    }, []);
 
     return (
         <div>
             <div className="content-header">
                 <div className="logo">
-                    <SiLogitech />
+                    <NavLink to='/'>
+                        <SiLogitech className="navlink"/>
+                    </NavLink>
                 </div>
                 <div className="form">
                     <input type="text" placeholder='Напиши текст...' />
@@ -37,12 +39,12 @@ const Header = () => {
                 </div>
                 <div className="cart">
                     <NavLink className='cart-country' to='/about'>
-                        <BsCart4 />
+                        <BsCart4 className="icon-header"/>
                         <h4>{cartCount}</h4>
                     </NavLink>
                     <NavLink className='favorite-country' to='/favorite'>
-                        <IoMdHeartEmpty />
-                        <h4>{favoriteCount}</h4> 
+                        <IoMdHeartEmpty className="icon-header"/>
+                        <h4>{favoriteCount}</h4>
                     </NavLink>
                 </div>
             </div>
