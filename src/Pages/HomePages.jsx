@@ -10,11 +10,9 @@ const HomePages = () => {
       <Header />
       <div className="section container">
         <div className="s-left">
-
           <HomeLft />
         </div>
         <div className="s-right">
-
           <HomeRight />
         </div>
       </div>

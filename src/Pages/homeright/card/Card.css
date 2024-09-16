@@ -1,10 +1,9 @@
 .card-container {
     transition: all 0.3s;
-    width: 300px;
+    width: 300px !important;
     height: 600px;
     display: flex;
     width: 280px;
-    border: 1px solid red;
     padding: 0px 0px 20px 20px;
     border: 1px solid silver;
     display: flex;
@@ -24,16 +23,18 @@
         justify-content: center;
         overflow: hidden;
         position: relative;
+
         .like {
             position: absolute;
-            right: 0;
             top: 0;
-            background-color: transparent;
+            right: 0;
         }
+
 
         img {
             width: 250px;
         }
+
     }
 }
 
@@ -47,6 +48,7 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+    overflow: hidden;
 
 
 }

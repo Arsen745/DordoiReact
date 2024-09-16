@@ -7,7 +7,7 @@ const AboutPages = () => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    const storedData = JSON.parse(localStorage.getItem('dataLocal'));
+    const storedData = JSON.parse(localStorage.getItem('cartData'));
 
     const fetchCartData = async () => {
       const results = await Promise.all(

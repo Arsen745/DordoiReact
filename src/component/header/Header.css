@@ -5,7 +5,8 @@
 }
 
 .content-header {
-    border: 1px solid red;
+    border-bottom: 1px solid silver;
+    margin-bottom: 10px;
     max-width: 1600px;
     width: 100%;
     margin: auto;
@@ -38,6 +39,23 @@
     .cart {
         font-size: 30px;
         color: rgb(0, 81, 255);
+        display: flex;
+        gap: 20px;
+        align-items: center;
 
+
+    }
+    .favorite-country,
+    .cart-country {
+        text-decoration: none;
+        position: relative;
+        padding: 10px;
+        h4 {
+            position: absolute;
+            font-size: 14px;
+            top: 0;
+            right: 0;
+            color: red;
+        }
     }
 }
