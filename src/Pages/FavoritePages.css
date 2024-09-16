@@ -1,0 +1,57 @@
+
+.date {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    .data-card {
+        /* border: 1px solid red; */
+        width: 370px;
+        img {
+            width: 100%;
+            height: 370px;
+            border: 1px solid blue;
+        }
+        h1 {
+            width: 100%;
+            border: 1px solid blue;
+        }
+        h2 {
+            width: 100%;
+            border: 1px solid black;
+        }
+    }
+}
+
+.btn-favorite {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn1 {
+    width: 180px;
+    height: 30px;
+    border: none;
+    border-radius: 10px;
+    background-color: red;
+    color: white;
+    margin-top: 10px;
+}
+
+.btn1:hover {
+    background-color: darkred;
+}
+
+.btn2 {
+    width: 180px;
+    height: 30px;
+    border: none;
+    border-radius: 10px;
+    background-color: blue;
+    color: white;
+    margin-top: 10px;
+}
+
+.btn2:hover {
+    background-color: darkblue;
+}
+

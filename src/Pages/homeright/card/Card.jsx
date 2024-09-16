@@ -56,7 +56,7 @@ const toggleFavorite = (id, value, isFavorite, setIsFavorite) => {
     window.dispatchEvent(new Event('storage'));
 };
 
-const Card = ({ name, model, price, country, image, description, values, id }) => {
+const Card = ({ name, model, price, country, image, values, id }) => {
     const [isFavorite, setIsFavorite] = useState(false);
     const [isInCart, setIsInCart] = useState(false);
 
