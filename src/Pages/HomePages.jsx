@@ -6,7 +6,6 @@ import Footer from '../component/footer/Footer'
 import { useState } from 'react'
 
 const HomePages = () => {
-  const [spin, setSpin] = useState(false)
   return (
     <div>
       <Header />

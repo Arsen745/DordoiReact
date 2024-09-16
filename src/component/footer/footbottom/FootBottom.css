@@ -13,6 +13,17 @@
     }
 
     
+    .hr {
+        display: flex;
+        justify-content: center;
+        width: 917px;
+        height: 0;
+        margin: auto;
+        max-width: 1600px;
+        border: 1px solid black;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
     h4 {
         margin-bottom: 20px;
     }

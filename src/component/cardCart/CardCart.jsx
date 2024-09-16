@@ -4,8 +4,6 @@ import RightCard from './rightcard/RightCard'
 
 
 const CardCart = ({image, text, country, description, price, id, onDelete}) => {
-
-
   return (
     <div className='card-cart'>
       <LeftCard image={image}/>
@@ -14,5 +12,4 @@ const CardCart = ({image, text, country, description, price, id, onDelete}) => {
     </div>
   )
 }
-
 export default CardCart

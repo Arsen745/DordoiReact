@@ -4,12 +4,12 @@ import Footer from '../component/footer/Footer';
 import CardCart from '../component/cardCart/CardCart'; 
 import { Spin, Flex } from 'antd'; 
 import index from '../api/index'
+import './FavoritePages.css'
 
 const FavoritePage = () => {
   const [data, setData] = useState([]);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
-
   useEffect(() => {
     const storedData = JSON.parse(localStorage.getItem('favoriteData')); 
 

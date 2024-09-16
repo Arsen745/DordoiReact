@@ -16,7 +16,7 @@ const rout = [
     },
     {
         path: '/favorite',
-        component: <FavoritePage/>,
+        component: <FavoritePage />,
         key: 'favorite'
     }
 ]
