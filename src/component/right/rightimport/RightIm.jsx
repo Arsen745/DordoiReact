@@ -7,35 +7,35 @@ const RightIm = (props) => {
   const { text } = props;
   const [data, setData] = useState(null);
   const { setDataContext } = useContext(CONTEXT);
-  const [activeIndex, setActiveIndex] = useState(null); 
-  const InsaGet = async (cate, index1) => {
+  const [categoryIn, setCategoryIn] = useState(text[0]?.category || 'Fridge'); 
+  const [activeIndex, setActiveIndex] = useState(0); 
+
+  const InsaGet = async (cate) => {
     try {
       const response = await index.Card(cate);
       console.log(response);
-      setData(null);
       setData(response);
-      setDataContext(null);
-      setDataContext(response);
-      setActiveIndex(index1); 
+      setDataContext(response); 
     } catch (error) {
       console.error("Error fetching data:", error);
     }
   };
+
   useEffect(() => {
-  }, [data]);
+    InsaGet(categoryIn); 
+  }, [categoryIn]); 
+  const handleClick = (category, index) => {
+    setCategoryIn(category); 
+    setActiveIndex(index); 
+  };
+
   return (
     <div className='buttons-text'>
       {text.map((el, index) => (
         <h1
-          className={activeIndex === index ? 'active' : ''}
-          onClick={() => {
-            if (activeIndex === index) {
-              setActiveIndex(null); 
-            } else {
-              InsaGet(el.category, index); 
-            }
-          }}
+          onClick={() => handleClick(el.category, index)}
           key={index}
+          className={activeIndex === index ? 'active' : ''} 
         >
           {el.name}
         </h1>

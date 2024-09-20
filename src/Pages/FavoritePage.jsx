@@ -3,13 +3,14 @@ import Header from '../component/header/Header';
 import Footer from '../component/footer/Footer';
 import CardCart from '../component/cardCart/CardCart'; 
 import { Spin, Flex } from 'antd'; 
-import index from '../api/index'
-import './FavoritePages.css'
+import index from '../api/index';
+import './FavoritePages.css';
 
 const FavoritePage = () => {
   const [data, setData] = useState([]);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const storedData = JSON.parse(localStorage.getItem('favoriteData')); 
 
@@ -24,8 +25,7 @@ const FavoritePage = () => {
         const results = await Promise.all(
           storedData.map(async (el) => {
             const response = await index.Cart(el.value, el.id); 
-            return { ...response, id: el.id };
-            
+            return { ...response, id: el.id, value: el.value }; 
           })
         );
         setData(results);
@@ -39,18 +39,17 @@ const FavoritePage = () => {
     fetchFavoriteData();
   }, []);
 
-  const handleDelete = (id) => {
-    const newData = data.filter((item) => item.id !== id);
+  const handleDelete = (id, value) => {
+    const newData = data.filter((item) => !(item.id === id && item.value === value)); 
     setData(newData);
 
     if (newData.length === 0) {
       setError('Ваше избранное пустое');
     }
 
-    const updatedLocalStorage = JSON.parse(localStorage.getItem('favoriteData')).filter((el) => el.id !== id);
+    const updatedLocalStorage = JSON.parse(localStorage.getItem('favoriteData')).filter((el) => !(el.id === id && el.value === value)); 
     localStorage.setItem('favoriteData', JSON.stringify(updatedLocalStorage));
     window.dispatchEvent(new Event('storage'));
-
   };
 
   return (
@@ -69,12 +68,13 @@ const FavoritePage = () => {
                 <CardCart
                   key={index}
                   id={response.id}
+                  value={response.value} 
                   text={response.name}
                   image={response.image}
                   price={response.price}
                   description={response.description}
                   country={response.country}
-                  onDelete={handleDelete} 
+                  onDelete={() => handleDelete(response.id, response.value)} 
                 />
               ))
             ) : (

@@ -2,9 +2,9 @@ import './Card.css';
 import Checkbox from '@mui/material/Checkbox';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import Favorite from '@mui/icons-material/Favorite';
-import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useState, useEffect } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 
 const notifyAddedToCart = () => toast("Добавлено в корзину!");
 const notifyRemovedFromCart = () => toast("Удалено из корзины!");
@@ -17,64 +17,58 @@ const handleAddToCart = (id, value, setIsInCart) => {
     let existingCartData = localStorage.getItem('cartData');
     existingCartData = existingCartData ? JSON.parse(existingCartData) : [];
 
-    const newCartItem = { id, value };
-    existingCartData.push(newCartItem);
-    localStorage.setItem('cartData', JSON.stringify(existingCartData));
-
-    notifyAddedToCart();
-    setIsInCart(true);
-    window.dispatchEvent(new Event('storage'));
+    const itemExists = existingCartData.some(item => item.id === id && item.value === value);
+    
+    if (!itemExists) {
+        const newCartItem = { id, value };
+        existingCartData.push(newCartItem);
+        localStorage.setItem('cartData', JSON.stringify(existingCartData));
+    
+        setIsInCart(true);
+        window.dispatchEvent(new Event('storage'));
+    }
 };
 
-const handleRemoveFromCart = (id, setIsInCart) => {
+const handleRemoveFromCart = (id, value, setIsInCart) => {
     let existingCartData = JSON.parse(localStorage.getItem('cartData')) || [];
-
-    const updatedCartData = existingCartData.filter(item => item.id !== id);
+    const updatedCartData = existingCartData.filter(item => !(item.id === id && item.value === value));
     localStorage.setItem('cartData', JSON.stringify(updatedCartData));
-
-    notifyRemovedFromCart();
     setIsInCart(false);
     window.dispatchEvent(new Event('storage'));
 };
-
 const toggleFavorite = (id, value, isFavorite, setIsFavorite) => {
     let existingFavoriteData = localStorage.getItem('favoriteData');
     existingFavoriteData = existingFavoriteData ? JSON.parse(existingFavoriteData) : [];
-
     if (isFavorite) {
-        const updatedFavoriteData = existingFavoriteData.filter(item => item.id !== id);
+        const updatedFavoriteData = existingFavoriteData.filter(item => !(item.id === id && item.value === value));
         localStorage.setItem('favoriteData', JSON.stringify(updatedFavoriteData));
-        notifyRemovedFromFavorites();
     } else {
         const newFavoriteItem = { id, value };
         existingFavoriteData.push(newFavoriteItem);
         localStorage.setItem('favoriteData', JSON.stringify(existingFavoriteData));
-        notifyAddedToFavorites();
     }
 
     setIsFavorite(!isFavorite);
     window.dispatchEvent(new Event('storage'));
 };
-
 const Card = ({ name, model, price, country, image, values, id }) => {
     const [isFavorite, setIsFavorite] = useState(false);
     const [isInCart, setIsInCart] = useState(false);
-
     useEffect(() => {
         const favoriteData = JSON.parse(localStorage.getItem('favoriteData')) || [];
-        const itemIsFavorite = favoriteData.some(item => item.id === id);
+        const itemIsFavorite = favoriteData.some(item => item.id === id && item.value === values);
         setIsFavorite(itemIsFavorite);
-    }, [id]);
-
+    }, [id, values]);
     useEffect(() => {
         const cartData = JSON.parse(localStorage.getItem('cartData')) || [];
-        const itemIsInCart = cartData.some(item => item.id === id);
+        const itemIsInCart = cartData.some(item => item.id === id && item.value === values);
         setIsInCart(itemIsInCart);
-    }, [id]);
+    }, [id, values]);
 
     return (
         <div className="card-container">
             <div className='card-content'>
+                <ToastContainer /> 
                 <div className="card-img">
                     <div className="like">
                         <Checkbox
@@ -87,6 +81,7 @@ const Card = ({ name, model, price, country, image, values, id }) => {
                     </div>
                     <img src={image} alt={name} />
                 </div>
+
                 <div className='all-data'>
                     <div className='flex'>
                         <p>Название</p>
@@ -104,11 +99,12 @@ const Card = ({ name, model, price, country, image, values, id }) => {
                         <p>Цена</p>
                         <h3 className='title'>{price}</h3>
                     </div>
+
                     <div className='button'>
                         {isInCart ? (
                             <button 
                                 className='added-btn remove' 
-                                onClick={() => handleRemoveFromCart(id, setIsInCart)}
+                                onClick={() => handleRemoveFromCart(id, values, setIsInCart)}
                                 style={{ backgroundColor: 'red' }}
                             >
                                 Удалить из корзины

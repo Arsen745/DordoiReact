@@ -3,7 +3,6 @@ import HomeLft from './homeleft/HomeLft'
 import HomeRight from './homeright/HomeRight'
 import './HomePages.css'
 import Footer from '../component/footer/Footer'
-import { useState } from 'react'
 
 const HomePages = () => {
   return (
@@ -23,3 +22,7 @@ const HomePages = () => {
 }
 
 export default HomePages
+
+
+
+

@@ -3,6 +3,16 @@
     justify-content: space-around;
     align-items: center;
     border-bottom: 1px solid black;
+    position: relative;
+
+    i {
+        color: black;
+        right: 100px;
+        top: 20px;
+        font-size: 30px;
+        position: absolute;
+        cursor: pointer;
+    }
 }
 
 .hr {

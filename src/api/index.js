@@ -12,7 +12,7 @@ class Regue {
     }
     async Cart(val, id) {
         try {
-            const url = `${val}/${id}`; // Формируем URL
+            const url = `${val}/${id}`; 
             const response = await ins(url);
             return response.data;
         } catch (error) {
@@ -20,6 +20,16 @@ class Regue {
             throw error;
         }
     }
+    async Search(val) {
+        try {
+            const response = await ins(val);
+            return response.data;
+        } catch (error) {
+            console.error("Error fetching card:", error);
+            throw error;
+        }
+    }
+    
 
 }
 

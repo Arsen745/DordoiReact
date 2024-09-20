@@ -31,7 +31,7 @@ const AboutPages = () => {
         const results = await Promise.all(
           storedData.map(async (el) => {
             const response = await index.Cart(el.value, el.id);
-            return { ...response, id: el.id };
+            return { ...response, id: el.id, value: el.value };
           })
         );
         setData(results);
@@ -44,19 +44,17 @@ const AboutPages = () => {
 
     fetchCartData();
   }, []);
-
-  const handleDelete = (id) => {
-    const newData = data.filter((item) => item.id !== id);
+  const handleDelete = (id, value) => {
+    const newData = data.filter((item) => !(item.id === id && item.value === value));
     setData(newData);
 
     if (newData.length === 0) {
       setError('Ваша корзина пустая');
     }
 
-    const updatedLocalStorage = JSON.parse(localStorage.getItem('cartData')).filter((el) => el.id !== id);
+    const updatedLocalStorage = JSON.parse(localStorage.getItem('cartData')).filter((el) => !(el.id === id && el.value === value));
     localStorage.setItem('cartData', JSON.stringify(updatedLocalStorage));
     window.dispatchEvent(new Event('storage'));
-
   };
 
   return (
@@ -77,12 +75,13 @@ const AboutPages = () => {
                 <CardCart
                   key={index}
                   id={response.id}
+                  value={response.value} 
                   text={response.name}
                   image={response.image}
                   price={response.price}
                   description={response.description}
                   country={response.country}
-                  onDelete={handleDelete}
+                  onDelete={() => handleDelete(response.id, response.value)} 
                 />
               ))
             ) : (
@@ -91,7 +90,7 @@ const AboutPages = () => {
           </>
         )}
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 };
