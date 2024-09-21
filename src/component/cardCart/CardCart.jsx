@@ -3,15 +3,15 @@ import LeftCard from './leftcard/LeftCard'
 import RightCard from './rightcard/RightCard'
 
 
-const CardCart = ({image, text, country, description, price, id, onDelete}) => {
+const CardCart = ({model,image, text, country, description, price, id, onDelete, values}) => {
   return (
     <div className='card-cart'>
-      <i class="bi bi-x-lg" onClick={() => {
+      <i className="bi bi-x-lg" onClick={() => {
         onDelete()
       }}></i>
       <LeftCard image={image}/>
       <div className="hr"></div>
-      <RightCard text={text} country={country} description={description} price={price} id={id} onDelete={onDelete}/>
+      <RightCard text={text} country={country} description={description} price={price} id={id} onDelete={onDelete} model={model} values={values}/>
     </div>
   )
 }

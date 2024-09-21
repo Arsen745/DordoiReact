@@ -1,23 +1,32 @@
+import { useNavigate } from 'react-router-dom';
 import './Right.css'
 import { textFieldClasses } from '@mui/material'
 
-const RightCard = ({ text, price, country, description, id, onDelete }) => {
-    console.log('onDelete');
+const RightCard = ({ text, price, country, description, id, onDelete, model, values }) => {
+    const navigate = useNavigate()
+
+    const fetchOrder = (ids, value) => {
+        localStorage.setItem('ids', ids)
+        localStorage.setItem('value', value)
+    }
     
     return (
         <div className='data-cart'>
             <div className='data-card'>
-                <h1 className='title1'> {text}</h1>
-                <h1 className='title1'>{price}</h1>
-                <p>{description}</p>
-                <h1 className='title1'>{country}</h1>
+                <h3 className='title1'><span>названия: </span> {text}</h3>
+                <h3 className='title1'><span>модель: </span> {model}</h3>
+                <p><span>характеристики: </span>{description}</p>
+                <h4 className='title1'><span>страна произвоство: </span>{country}</h4>
+                <h2 className='title2'><span>цена: </span>{price}</h2>
             </div>
             <div className='btn-card'>
-                <button className='button1'>iman</button>
-                <button className='button2' onClick={() => onDelete(id)}>delete</button>
+                <button className='button1' onClick={() => {
+                    fetchOrder(id, values),
+                    navigate('/orderpage')
+                }}>Оформить товар</button>
+                <button className='button2' onClick={() => onDelete(id)}>Удалить</button>
             </div>
         </div>
     )
 }
-
 export default RightCard

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import Header from '../component/header/Header';
 import Footer from '../component/footer/Footer';
-import CardCart from '../component/cardCart/CardCart'; 
-import { Spin, Flex } from 'antd'; 
+import CardCart from '../component/cardCart/CardCart';
+import { Spin, Flex } from 'antd';
 import index from '../api/index';
 import './FavoritePages.css';
+import CardFavorite from '../component/card-favourite/CardFavorite';
 
 const FavoritePage = () => {
   const [data, setData] = useState([]);
@@ -12,7 +13,7 @@ const FavoritePage = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const storedData = JSON.parse(localStorage.getItem('favoriteData')); 
+    const storedData = JSON.parse(localStorage.getItem('favoriteData'));
 
     if (!storedData || storedData.length === 0) {
       setError('Ваше избранное пустое');
@@ -24,8 +25,8 @@ const FavoritePage = () => {
       try {
         const results = await Promise.all(
           storedData.map(async (el) => {
-            const response = await index.Cart(el.value, el.id); 
-            return { ...response, id: el.id, value: el.value }; 
+            const response = await index.Cart(el.value, el.id);
+            return { ...response, id: el.id, value: el.value };
           })
         );
         setData(results);
@@ -40,14 +41,14 @@ const FavoritePage = () => {
   }, []);
 
   const handleDelete = (id, value) => {
-    const newData = data.filter((item) => !(item.id === id && item.value === value)); 
+    const newData = data.filter((item) => !(item.id === id && item.value === value));
     setData(newData);
 
     if (newData.length === 0) {
       setError('Ваше избранное пустое');
     }
 
-    const updatedLocalStorage = JSON.parse(localStorage.getItem('favoriteData')).filter((el) => !(el.id === id && el.value === value)); 
+    const updatedLocalStorage = JSON.parse(localStorage.getItem('favoriteData')).filter((el) => !(el.id === id && el.value === value));
     localStorage.setItem('favoriteData', JSON.stringify(updatedLocalStorage));
     window.dispatchEvent(new Event('storage'));
   };
@@ -65,7 +66,8 @@ const FavoritePage = () => {
           <>
             {data.length > 0 ? (
               data.map((response, index) => (
-                <CardCart
+
+                <CardFavorite                 
                   key={index}
                   id={response.id}
                   value={response.value} 
@@ -74,8 +76,8 @@ const FavoritePage = () => {
                   price={response.price}
                   description={response.description}
                   country={response.country}
-                  onDelete={() => handleDelete(response.id, response.value)} 
-                />
+                  onDelete={() => handleDelete(response.id, response.value)}
+                  values={response.values}/>
               ))
             ) : (
               <p className='spinner'>{error}</p>

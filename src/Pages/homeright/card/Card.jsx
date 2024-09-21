@@ -3,8 +3,9 @@ import Checkbox from '@mui/material/Checkbox';
 import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
 import Favorite from '@mui/icons-material/Favorite';
 import 'react-toastify/dist/ReactToastify.css';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
+import { CONTEXT } from '../../../context/AppContext';
 
 const notifyAddedToCart = () => toast("Добавлено в корзину!");
 const notifyRemovedFromCart = () => toast("Удалено из корзины!");
@@ -28,6 +29,7 @@ const handleAddToCart = (id, value, setIsInCart) => {
         window.dispatchEvent(new Event('storage'));
     }
 };
+
 
 const handleRemoveFromCart = (id, value, setIsInCart) => {
     let existingCartData = JSON.parse(localStorage.getItem('cartData')) || [];
@@ -64,6 +66,7 @@ const Card = ({ name, model, price, country, image, values, id }) => {
         const itemIsInCart = cartData.some(item => item.id === id && item.value === values);
         setIsInCart(itemIsInCart);
     }, [id, values]);
+
 
     return (
         <div className="card-container">

@@ -5,28 +5,31 @@ import { CONTEXT } from '../../../context/AppContext';
 
 const RightIm = (props) => {
   const { text } = props;
-  const [data, setData] = useState(null);
-  const { setDataContext } = useContext(CONTEXT);
-  const [categoryIn, setCategoryIn] = useState(text[0]?.category || 'Fridge'); 
+  const { setDataContext, setClick, setCategoryClick } = useContext(CONTEXT);
+  const [categoryIn, setCategoryIn] = useState(text[0]?.category); 
   const [activeIndex, setActiveIndex] = useState(0); 
+  const [error, setError] = useState(null);
 
   const InsaGet = async (cate) => {
     try {
       const response = await index.Card(cate);
-      console.log(response);
-      setData(response);
       setDataContext(response); 
+      setError(null); 
     } catch (error) {
       console.error("Error fetching data:", error);
+      setError("Ошибка загрузки данных"); 
     }
   };
 
   useEffect(() => {
     InsaGet(categoryIn); 
   }, [categoryIn]); 
+
   const handleClick = (category, index) => {
     setCategoryIn(category); 
     setActiveIndex(index); 
+    setClick(false);
+    setCategoryClick(true);
   };
 
   return (
@@ -40,6 +43,7 @@ const RightIm = (props) => {
           {el.name}
         </h1>
       ))}
+      {error && <div className="error-message">{error}</div>} 
     </div>
   );
 };

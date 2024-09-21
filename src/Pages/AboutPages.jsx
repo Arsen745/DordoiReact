@@ -4,6 +4,7 @@ import CardCart from '../component/cardCart/CardCart';
 import index from '../api/index';
 import { Alert, Flex, Spin } from 'antd';
 import Footer from '../component/footer/Footer';
+import { PersonPin } from '@mui/icons-material';
 
 const AboutPages = () => {
   const [error, setError] = useState('');
@@ -74,8 +75,9 @@ const AboutPages = () => {
               data.map((response, index) => (
                 <CardCart
                   key={index}
+                  model={response.model}
                   id={response.id}
-                  value={response.value} 
+                  values={response.values} 
                   text={response.name}
                   image={response.image}
                   price={response.price}

@@ -2,19 +2,45 @@
     width: 380px;
     padding: 20px;
     height: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .data-card {
-    .title1 {
-        display: flex;
-        font-size: 20px;
-        margin-top: 20px;
-        margin-bottom: 20px;
-        span {
-            color: blue;
-            font-size: 24px;
-        }
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 60%;
+    span {
+        color: black;
+        font-size: 16px;
+        font-weight: 400;
+        margin-right: 10px;
+
     }
+    h3 {
+        color: black;
+        margin-bottom: 10px;
+    }
+    p {
+        color: black;
+        font-size: 18px;
+        margin-bottom: 10px;
+        font-weight: bold;
+        overflow-y: auto;
+    }
+    P::-webkit-scrollbar {
+        width: 0;
+    }
+    h4 {
+        margin-bottom: 10px;
+    }
+    .title2 {
+        color: black;
+ 
+    }
+
 }
 .btn-card {
     text-align: center;

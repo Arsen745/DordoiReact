@@ -2,6 +2,7 @@ import { Route, Routes} from 'react-router-dom'
 import HomePages from '../Pages/HomePages'
 import AboutPages from '../Pages/AboutPages'
 import FavoritePage from '../Pages/FavoritePage'
+import OrderPage from '../Pages/OrderPage'
 
 const rout = [
     {
@@ -18,6 +19,11 @@ const rout = [
         path: '/favorite',
         component: <FavoritePage />,
         key: 'favorite'
+    },
+    {
+        path: '/orderpage',
+        component: <OrderPage/>,
+        key: 'order'
     }
 ]
 const AppRout = () => {

@@ -3,7 +3,7 @@ import './Header.css';
 import { SiLogitech } from "react-icons/si";
 import { BsCart4 } from "react-icons/bs";
 import { IoMdHeartEmpty } from "react-icons/io";
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import index from '../../api/index';
 import { CONTEXT } from '../../context/AppContext';
 
@@ -11,15 +11,15 @@ const Header = () => {
     const [cartCount, setCartCount] = useState(0);
     const [favoriteCount, setFavoriteCount] = useState(0);
     const [letterSearch, setLetterSearch] = useState('');
-
-    const { setSearchData, setClick } = useContext(CONTEXT); // Исправлено имя функции
-
+    const [error, setError] = useState(false);
+    const { setSearchData, setClick } = useContext(CONTEXT); 
     const updateCounts = () => {
         const cartData = JSON.parse(localStorage.getItem('cartData')) || [];
         const favoriteData = JSON.parse(localStorage.getItem('favoriteData')) || [];
         setCartCount(cartData.length);
         setFavoriteCount(favoriteData.length);
     };
+    const navigate = useNavigate();
 
     useEffect(() => {
         updateCounts();
@@ -33,12 +33,10 @@ const Header = () => {
     const text = [
         { name: "Пылесос", category: "VacuumCleaner" },
         { name: "Холодильник", category: "Fridge" },
-        { name: "Кухонный комбайн", category: "FoodProcessor" },
         { name: "Утюг", category: "iron" },
         { name: "Морозильник", category: "Freezer" },
         { name: "Телевизор", category: "Tv" },
         { name: "Аристон", category: "Ariston" },
-        { name: "Стейк машина", category: "Steik" },
         { name: "Вафельница", category: "waffli" },
         { name: "Блендер", category: "Blender" },
         { name: "Миксер", category: "Mikser" },
@@ -48,35 +46,42 @@ const Header = () => {
         { name: "Микроволновка", category: "Microvol" },
         { name: "Духовка", category: "Duhovka" },
         { name: "Газ плита", category: "Plita" },
-        { name: "Тепловентилятор", category: "Teplovintel" },
-        { name: "Кофеварка", category: "Coffe" },
-        { name: "Фритюрница", category: "frity" },
         { name: "Соковыжималка", category: "Socovij" },
-        { name: "Электрическая мясорубка", category: "Miasorubka" },
         { name: "Электрический плита", category: "Electriplita" },
         { name: "Электрический чайник", category: "Chainik" },
         { name: "Электрический нагреватель", category: "Nagrevatel" },
         { name: "Встраиваемая техника", category: "Vstoemyi" },
-        { name: "Отпариватель", category: "Otparivatel" },
         { name: "Посудомоечная машина", category: "PosydaMashine" }
     ];
 
     const fetchSearch = async () => {
-        const results = []; 
+        const results = [];
         try {
+            setSearchData(null);
+            
             for (const el of text) {
                 const response = await index.Search(el.category);
                 response.forEach(item => {
                     if (item.name.toLowerCase().includes(letterSearch.toLowerCase())) {
-                        results.push(item); 
-                        console.log(item);
-                        
+                        results.push(item);
                     }
                 });
             }
-            setSearchData(results); 
+            setSearchData(results);
         } catch (error) {
             console.error("Error fetching data:", error);
+        }
+    };
+
+    const handleSearch = () => {
+        if (letterSearch.trim() === '') {
+            setError(true);
+        } else {
+            setError(false);
+            fetchSearch(); 
+            setClick(true); 
+            navigate('/');
+            setLetterSearch(''); 
         }
     };
 
@@ -90,14 +95,13 @@ const Header = () => {
                 </div>
                 <div className="form">
                     <input 
+                        value={letterSearch} 
                         onChange={(e) => setLetterSearch(e.target.value)} 
                         type="text" 
                         placeholder='Напиши текст...' 
+                        className={error ? 'error' : ''} 
                     />
-                    <button onClick={() => {
-                        fetchSearch();
-                        setClick(true);
-                    }}>Искать</button>
+                    <button onClick={handleSearch}>Искать</button>
                 </div>
                 <div className="cart">
                     <NavLink className='cart-country' to='/about'>

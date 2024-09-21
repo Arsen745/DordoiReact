@@ -29,6 +29,16 @@ class Regue {
             throw error;
         }
     }
+    async Order(val, id) {
+        try {
+            const url = `${val}/${id}`; 
+            const response = await ins(url);
+            return response.data;
+        } catch (error) {
+            console.error("Error fetching cart:", error);
+            throw error;
+        }
+    }
     
 
 }
