@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import './CardOrder.css';
 import { useNavigate } from 'react-router-dom';
+import { CONTEXT } from '../../context/AppContext';
 
 const CardOrder = ({ image, name, model, price }) => {
     const [count, setCount] = useState(1);
@@ -12,9 +13,19 @@ const CardOrder = ({ image, name, model, price }) => {
     const [errorr, setErrorr] = useState('');
     const [scidca, setScidca] = useState(0);
     const [isDiscountApplied, setIsDiscountApplied] = useState(false);
-    const [isButtonDisabled, setIsButtonDisabled] = useState(false); 
+    const [isButtonDisabled, setIsButtonDisabled] = useState(false);
     const navigate = useNavigate();
+    const { setFuncSaveCart, funcSaveCart } = useContext(CONTEXT)
 
+    const proverKa = () => {
+        if (funcSaveCart === false) {
+            setFuncSaveCart(true)
+
+        } else (
+            setFuncSaveCart(false)
+
+        )
+    }
     const addCount = () => {
         setCount((prev) => prev + 1);
     };
@@ -38,8 +49,8 @@ const CardOrder = ({ image, name, model, price }) => {
         } else {
             setUserName('');
             setPhoneNumber('');
-            setIsButtonDisabled(true); 
-            navigate('/'); 
+            setIsButtonDisabled(true);
+            navigate('/');
         }
     };
 
@@ -66,11 +77,24 @@ const CardOrder = ({ image, name, model, price }) => {
             setPrice((p) => p - 1000);
             setScidca(1000);
             setErrorr('');
-            setIsDiscountApplied(true); 
+            setIsDiscountApplied(true);
         } else {
             setErrorr('Промокод не работает');
         }
     };
+    const saveOrder = (na, mo, pric, coun) => {
+        let currentOrders = JSON.parse(localStorage.getItem('my_orders')) || [];
+        const newOrder = {
+            name: na,
+            model: mo,
+            price: pric,
+            country: coun
+        };
+        currentOrders.push(newOrder);
+        localStorage.setItem('my_orders', JSON.stringify(currentOrders));
+    };
+
+
 
     return (
         <div className='card-order'>
@@ -114,8 +138,9 @@ const CardOrder = ({ image, name, model, price }) => {
                 <div className="buy-button">
                     <button
                         className={addClass}
-                        onClick={handleBuy} 
-                        disabled={isButtonDisabled} 
+                        onClick={() => { handleBuy, saveOrder(name, model, price1 * count, count), proverKa() }}
+                        disabled={isButtonDisabled}
+
                     >
                         Купить ({count})
                     </button>

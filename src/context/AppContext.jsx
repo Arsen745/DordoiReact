@@ -7,7 +7,7 @@ const AppContext = ({ children }) => {
     const [clickData, setClick] = useState(false);
     const [searchData, setSearchData] = useState(null); 
     const [categoryClick, setCategoryClick] = useState(false)
-    const [funcSaveCart, setFuncSaveCart] = useState()
+    const [funcSaveCart, setFuncSaveCart] = useState(false)
 
     const context = {
         dataContext,
@@ -18,6 +18,8 @@ const AppContext = ({ children }) => {
         setClick,
         setCategoryClick,
         categoryClick,
+        setFuncSaveCart,
+        funcSaveCart
     
 
         

@@ -6,13 +6,27 @@ import { IoMdHeartEmpty } from "react-icons/io";
 import { NavLink, useNavigate } from 'react-router-dom';
 import index from '../../api/index';
 import { CONTEXT } from '../../context/AppContext';
+import { Button, Drawer, Tag, Typography } from 'antd';
 
 const Header = () => {
     const [cartCount, setCartCount] = useState(0);
     const [favoriteCount, setFavoriteCount] = useState(0);
     const [letterSearch, setLetterSearch] = useState('');
     const [error, setError] = useState(false);
-    const { setSearchData, setClick } = useContext(CONTEXT); 
+    const { setSearchData, setClick, funcSaveCart } = useContext(CONTEXT);
+    const [open, setOpen] = useState(false);
+    const [saveOrders, setSaveOrders] = useState([])
+
+    const { Title } = Typography;
+
+    const showDrawer = () => {
+        setOpen(true);
+    };
+
+    const onClose = () => {
+        setOpen(false);
+    };
+
     const updateCounts = () => {
         const cartData = JSON.parse(localStorage.getItem('cartData')) || [];
         const favoriteData = JSON.parse(localStorage.getItem('favoriteData')) || [];
@@ -58,7 +72,7 @@ const Header = () => {
         const results = [];
         try {
             setSearchData(null);
-            
+
             for (const el of text) {
                 const response = await index.Search(el.category);
                 response.forEach(item => {
@@ -78,12 +92,27 @@ const Header = () => {
             setError(true);
         } else {
             setError(false);
-            fetchSearch(); 
-            setClick(true); 
+            fetchSearch();
+            setClick(true);
             navigate('/');
-            setLetterSearch(''); 
+            setLetterSearch('');
         }
     };
+    const addLocalStr = () => {
+        const savedOrder = JSON.parse(localStorage.getItem('my_orders'));
+        if (savedOrder) {
+            setSaveOrders(savedOrder);
+        }
+    };
+    useEffect(() => {
+        addLocalStr();
+    }, []);
+    useEffect(() => {
+        addLocalStr();
+    }, [funcSaveCart]);
+
+
+
 
     return (
         <div>
@@ -94,12 +123,12 @@ const Header = () => {
                     </NavLink>
                 </div>
                 <div className="form">
-                    <input 
-                        value={letterSearch} 
-                        onChange={(e) => setLetterSearch(e.target.value)} 
-                        type="text" 
-                        placeholder='Напиши текст...' 
-                        className={error ? 'error' : ''} 
+                    <input
+                        value={letterSearch}
+                        onChange={(e) => setLetterSearch(e.target.value)}
+                        type="text"
+                        placeholder='Напиши текст...'
+                        className={error ? 'error' : ''}
                     />
                     <button onClick={handleSearch}>Искать</button>
                 </div>
@@ -112,6 +141,24 @@ const Header = () => {
                         <IoMdHeartEmpty className="icon-header" />
                         <h4>{favoriteCount}</h4>
                     </NavLink>
+                    <Button type="primary" onClick={showDrawer}>
+                        Мои заказы
+                    </Button>
+                    <Drawer title="Ваши заказы" onClose={onClose} open={open}>
+                        {saveOrders.map(el => {
+                            return (
+                                <p>
+                                    <Tag style={{width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', marginBottom: 20}} color="green">
+                                        <p>товар: <Title style={{margin: 0, display: 'inline', marginLeft: '20px'}}  level={3}>{el.name}</Title></p>
+                                        <p>модель: <Title style={{margin: 0, display: 'inline', marginLeft: '20px'}} level={5}>{el.name}</Title></p>
+                                        <p>количество: <Title style={{margin: 0, display: 'inline', marginLeft: '20px'}} level={5}>{el.country}</Title></p>
+                                        <p>общий цена: <Title style={{margin: 0, display: 'inline', marginLeft: '20px'}} level={5}>{el.price}</Title></p>
+                                    </Tag></p>
+                            )
+                        })}
+
+
+                    </Drawer>
                 </div>
             </div>
         </div>
