@@ -50,7 +50,6 @@ const CardOrder = ({ image, name, model, price }) => {
             setUserName('');
             setPhoneNumber('');
             setIsButtonDisabled(true);
-            navigate('/');
         }
     };
 
@@ -92,6 +91,8 @@ const CardOrder = ({ image, name, model, price }) => {
         };
         currentOrders.push(newOrder);
         localStorage.setItem('my_orders', JSON.stringify(currentOrders));
+        navigate('/');
+
     };
 
 
