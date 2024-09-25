@@ -144,6 +144,10 @@ const Header = () => {
                     <Button type="primary" onClick={showDrawer}>
                         Мои заказы
                     </Button>
+                    <Button type="primary" onClick={() => {
+                        navigate('/admin')
+                    }}>Создать свой магазин</Button>
+
                     <Drawer title="Ваши заказы" onClose={onClose} open={open}>
                         {saveOrders.map(el => {
                             return (

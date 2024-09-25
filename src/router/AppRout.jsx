@@ -3,6 +3,7 @@ import HomePages from '../Pages/HomePages'
 import AboutPages from '../Pages/AboutPages'
 import FavoritePage from '../Pages/FavoritePage'
 import OrderPage from '../Pages/OrderPage'
+import AdminHome from '../Pages/admin/admin-home/AdminHome'
 
 const rout = [
     {
@@ -24,6 +25,11 @@ const rout = [
         path: '/orderpage',
         component: <OrderPage/>,
         key: 'order'
+    },
+    {
+        path: '/admin',
+        component: <AdminHome/>,
+        key: 'admin-home-page'
     }
 ]
 const AppRout = () => {
