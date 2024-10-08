@@ -102,6 +102,10 @@ const Card = ({ name, model, price, country, image, values, id }) => {
                         <p>Цена</p>
                         <h3 className='title'>{price}</h3>
                     </div>
+                    <div className='flex'>
+                        <p>Магазин</p>
+                        <h3 className='title' style={{color: 'blue'}}>Dordoi Techno</h3>
+                    </div>
 
                     <div className='button'>
                         {isInCart ? (
