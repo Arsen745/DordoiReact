@@ -7,6 +7,7 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import index from '../../api/index';
 import { CONTEXT } from '../../context/AppContext';
 import { Button, Drawer, Tag, Typography } from 'antd';
+import Logo from '../../assets/dordoi store.png'
 
 const Header = () => {
     const [cartCount, setCartCount] = useState(0);
@@ -119,7 +120,7 @@ const Header = () => {
             <div className="content-header">
                 <div className="logo">
                     <NavLink to='/'>
-                        <SiLogitech className="navlink" />
+                        <img style={{width: '150px', }} src={Logo} alt="" />
                     </NavLink>
                 </div>
                 <div className="form">
