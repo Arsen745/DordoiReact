@@ -133,11 +133,11 @@ const Header = () => {
                     <button onClick={handleSearch}>Искать</button>
                 </div>
                 <div className="cart">
-                    <NavLink className='cart-country' to='/about'>
+                    <NavLink className='cart-country' to='/users/cart'>
                         <BsCart4 className="icon-header" />
                         <h4>{cartCount}</h4>
                     </NavLink>
-                    <NavLink className='favorite-country' to='/favorite'>
+                    <NavLink className='favorite-country' to='/user/favorite'>
                         <IoMdHeartEmpty className="icon-header" />
                         <h4>{favoriteCount}</h4>
                     </NavLink>
@@ -145,7 +145,7 @@ const Header = () => {
                         Мои заказы
                     </Button>
                     <Button type="primary" onClick={() => {
-                        navigate('/admin')
+                        navigate('/admin-login')
                     }}>Создать свой магазин</Button>
 
                     <Drawer title="Ваши заказы" onClose={onClose} open={open}>

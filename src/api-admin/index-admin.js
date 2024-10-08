@@ -11,5 +11,4 @@ class RegueAdmin {
         }
     }    
 }
-
 export default new RegueAdmin;

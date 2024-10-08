@@ -18,7 +18,6 @@ const AdminHome = () => {
     return (
         <div className='container'>
             <Layout style={layoutStyle}>
-                <HeaderAdmin/>
                 <Layout>
                     <SliderAdmin/>
                     <ContentAdmin/>

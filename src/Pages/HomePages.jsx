@@ -3,11 +3,11 @@ import HomeLft from './homeleft/HomeLft'
 import HomeRight from './homeright/HomeRight'
 import './HomePages.css'
 import Footer from '../component/footer/Footer'
+import { Outlet } from 'react-router-dom'
 
 const HomePages = () => {
   return (
     <div>
-      <Header />
       <div className="section container">
         <div className="s-left">
           <HomeLft/>
@@ -16,7 +16,7 @@ const HomePages = () => {
           <HomeRight/>
         </div>
       </div>
-        <Footer />
+        <Outlet/>
     </div>
   )
 }

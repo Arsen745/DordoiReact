@@ -11,7 +11,8 @@ const contentStyle = {
     padding: '0px 0px 20px 20px',
     display: 'flex',
     flexWrap: 'wrap',
-    gap: '20px'
+    gap: '20px',
+    scrollbars: '0px'
 };
 
 const ContentAdmin = () => {

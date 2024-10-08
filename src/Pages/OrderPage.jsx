@@ -21,9 +21,7 @@ const OrderPage = () => {
   }
   return (
     <div className='container'>
-      <Header />
       <CardOrder image={data.image} name={data.name} model={data.model} price={data.price}/>
-      <Footer />
     </div>
   )
 }

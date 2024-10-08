@@ -1,11 +1,13 @@
 import React from 'react'
-import AppRout from './router/AppRout'
 import './App.css'
+import { useRoutes } from 'react-router-dom'
+import routes from './router/AppRout'
 
 const App = () => {
+  const routing = useRoutes(routes)
   return (
     <div>
-      <AppRout/>
+      {routing}
     </div>
   )
 }

@@ -60,8 +60,6 @@ const AboutPages = () => {
 
   return (
     <div className='container'>
-      <Header />
-
       <div className="flex1-container-cart">
         {loading ? (
           <Flex gap="middle" className='spinner'>
@@ -92,7 +90,6 @@ const AboutPages = () => {
           </>
         )}
       </div>
-      <Footer />
     </div>
   );
 };

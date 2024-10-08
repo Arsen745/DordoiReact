@@ -1,6 +1,8 @@
 import React from 'react'
 import RightIm from './rightimport/RightIm'
 
+
+
 const Right = () => {
   const text = [
     { name: "Пылесос", category: "VacuumCleaner" },
@@ -26,10 +28,10 @@ const Right = () => {
     { name: "Посудомоечная машина", category: "PosydaMashine" }
   ];
 
+  
   return (
     <div>
       <RightIm text={text} />
-
     </div>
   )
 }

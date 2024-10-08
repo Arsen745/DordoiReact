@@ -8,6 +8,7 @@ const { Sider } = Layout;
 const siderStyle = {
     color: '#000',
     backgroundColor: '#fff',
+    borderRight: '1px solid silver'
 };
 const text = [
     { name: "Пылесос", category: "VacuumCleaner" },

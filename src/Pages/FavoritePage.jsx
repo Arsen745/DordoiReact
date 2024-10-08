@@ -6,6 +6,7 @@ import { Spin, Flex } from 'antd';
 import index from '../api/index';
 import './FavoritePages.css';
 import CardFavorite from '../component/card-favourite/CardFavorite';
+import { Outlet } from 'react-router-dom';
 
 const FavoritePage = () => {
   const [data, setData] = useState([]);
@@ -55,8 +56,6 @@ const FavoritePage = () => {
 
   return (
     <div className='container'>
-      <Header />
-
       <div className="flex1-container-favorite">
         {loading ? (
           <Flex gap="middle" className='spinner'>
@@ -86,7 +85,8 @@ const FavoritePage = () => {
         )}
       </div>
 
-      <Footer />
+   
+
     </div>
   );
 };

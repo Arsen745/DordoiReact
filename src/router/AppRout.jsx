@@ -1,45 +1,61 @@
-import { Route, Routes} from 'react-router-dom'
 import HomePages from '../Pages/HomePages'
 import AboutPages from '../Pages/AboutPages'
 import FavoritePage from '../Pages/FavoritePage'
 import OrderPage from '../Pages/OrderPage'
 import AdminHome from '../Pages/admin/admin-home/AdminHome'
+import Layout from '../layout/Layout'
+import LayoutAdmin from '../layout-admin/LayoutAdmin'
+import AdminLogIn from '../Pages/admin/admin-login/AdminLogIn'
+import AdminRegister from '../Pages/admin/admin-register/AdminRegister'
+import PasswordType from '../Pages/admin/password-type/PasswordType'
+const routes = [
+    {
+        path: '',
+        element: <Layout />,
+        children: [
+            {
 
-const rout = [
-    {
-        path: '/',
-        component: <HomePages/>,
-        key: 'home'
+                path: '/',
+                element: <HomePages />,  
+            },
+            {
+                path: '/user/favorite',
+                element: <FavoritePage />,  
+            },
+            {
+                path: '/users/cart',
+                element: <AboutPages/>
+            },
+            {
+                path: '/users/order',
+                element: <OrderPage/>
+
+            }
+
+        ]
     },
     {
-        path: '/about',
-        component: <AboutPages/>,
-        key: 'about'
+        path: '/admin-login',
+        element: <AdminLogIn/>
+
     },
     {
-        path: '/favorite',
-        component: <FavoritePage />,
-        key: 'favorite'
+        path: '/admin-register',
+        element: <AdminRegister/>
     },
     {
-        path: '/orderpage',
-        component: <OrderPage/>,
-        key: 'order'
+        path: '/admin-password-type',
+        element: <PasswordType/>
     },
     {
         path: '/admin',
-        component: <AdminHome/>,
-        key: 'admin-home-page'
+        element: <LayoutAdmin/>,
+        children: [
+            {
+                path: '/admin',
+                element: <AdminHome/>
+            }
+        ]
     }
 ]
-const AppRout = () => {
-  return (
-    <Routes>
-        {rout.map(el => (
-            <Route path={el.path} element={el.component} key={el.key}/>
-        ))}
-    </Routes>
-  )
-}
-
-export default AppRout
+export default routes;

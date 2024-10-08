@@ -22,7 +22,7 @@ const RightCard = ({ text, price, country, description, id, onDelete, model, val
             <div className='btn-card'>
                 <button className='button1' onClick={() => {
                     fetchOrder(id, values),
-                    navigate('/orderpage')
+                    navigate('/users/order')
                 }}>Оформить товар</button>
                 <button className='button2' onClick={() => onDelete(id)}>Удалить</button>
             </div>
