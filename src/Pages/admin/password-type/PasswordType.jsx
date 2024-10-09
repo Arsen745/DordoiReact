@@ -25,7 +25,7 @@ const PasswordType = () => {
             </div>
             <div className="buttons" style={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
                 <Button type='primary' onClick={() => {
-                    navigate('/admin')
+                    navigate('/admin/createshop')
                 }}>Подвердить</Button>
             </div>
         </div>

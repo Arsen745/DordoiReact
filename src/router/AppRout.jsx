@@ -8,6 +8,7 @@ import LayoutAdmin from '../layout-admin/LayoutAdmin'
 import AdminLogIn from '../Pages/admin/admin-login/AdminLogIn'
 import AdminRegister from '../Pages/admin/admin-register/AdminRegister'
 import PasswordType from '../Pages/admin/password-type/PasswordType'
+import ProfileAdmin from '../Pages/admin/profile-admin/ProfileAdmin'
 const routes = [
     {
         path: '',
@@ -48,6 +49,10 @@ const routes = [
         element: <PasswordType/>
     },
     {
+        path: '/admin/createshop',
+        element: <ProfileAdmin/>
+    },
+    {
         path: '/admin',
         element: <LayoutAdmin/>,
         children: [
@@ -55,6 +60,7 @@ const routes = [
                 path: '/admin',
                 element: <AdminHome/>
             }
+
         ]
     }
 ]
