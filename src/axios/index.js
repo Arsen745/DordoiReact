@@ -5,4 +5,4 @@ const ins = axios.create({
 }
     
 )
-export default ins;
+export default ins;                         

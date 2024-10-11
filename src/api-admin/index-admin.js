@@ -10,5 +10,6 @@ class RegueAdmin {
             throw error;
         }
     }    
+   
 }
 export default new RegueAdmin;

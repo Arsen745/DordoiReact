@@ -23,9 +23,6 @@ const AppContext = ({ children }) => {
         funcSaveCart,
         dataAdmin,
         setDataAdmin
-    
-
-        
     };
 
     return (

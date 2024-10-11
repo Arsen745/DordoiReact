@@ -47,5 +47,4 @@ const RightIm = (props) => {
     </div>
   );
 };
-
 export default RightIm;

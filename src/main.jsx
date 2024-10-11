@@ -7,7 +7,6 @@ import AppContext from './context/AppContext.jsx'
 createRoot(document.getElementById('root')).render(
   <BrowserRouter>
     <AppContext>
-
       <App />
     </AppContext>
   </BrowserRouter>,
