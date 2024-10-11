@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Input, Button, message } from 'antd';
 import { useNavigate } from 'react-router-dom';
+import indexAdmin from '../../../api-admin/index-admin';
 
-const baseUrl = 'https://pythonmaster42.pythonanywhere.com/admin_user/register/';
 
 const AdminRegister = () => {
   const [firstName, setFirstName] = useState('');
@@ -14,36 +14,58 @@ const AdminRegister = () => {
 
   const navigate = useNavigate();
 
+  // const Register = async () => {
+  //   try {
+  //     const response = await fetch(baseUrl, {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify({
+  //         first_name: firstName,
+  //         last_name: lastName,
+  //         email,
+  //         password,
+  //         confirm_password: confirmPassword,
+  //         phone_number: phoneNumber,
+  //       }),
+  //     });
+
+  //     const data = await response.json();
+
+  //     if (response.ok) {
+  //       message.success('Регистрация прошла успешно!');
+  //       navigate('/admin-password-type');
+  //     } else {
+  //       message.error(`Ошибка: ${data.detail || 'Не удалось зарегистрироваться'}`);
+  //     }
+  //   } catch (error) {
+  //     message.error('Произошла ошибка при регистрации. Попробуйте позже.');
+  //     console.error('Error during registration:', error);
+  //   }
+  // };
   const Register = async () => {
-    try {
-      const response = await fetch(baseUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          first_name: firstName,
-          last_name: lastName,
-          email,
-          password,
-          confirm_password: confirmPassword,
-          phone_number: phoneNumber,
-        }),
-      });
+    if(password.trim().length === 0 || email.trim().length === 0 || lastName.trim().length === 0 || firstName.trim().length === 0 || phoneNumber.trim().length === 0, confirmPassword.trim().length === 0) {
+      message.error('Заполните все форма')
+      return
+    } else {
 
-      const data = await response.json();
+      try {
+        const response = await indexAdmin.Register(firstName, lastName, email, password, confirmPassword, phoneNumber)
+        console.log(response);
+        if(response.data.response === true) {
+          message.success('Пользователь успешно зарегистрирован. Проверьте вашу электронную почту для получения кода активации.')
+          navigate('/admin-password-type');
 
-      if (response.ok) {
-        message.success('Регистрация прошла успешно!');
-        navigate('/admin-password-type');
-      } else {
-        message.error(`Ошибка: ${data.detail || 'Не удалось зарегистрироваться'}`);
+        }
+      } 
+      catch (error) {
+        console.log(error);
+        message.error('Ошибка неверные данные правильно укажите свои данные')
+
       }
-    } catch (error) {
-      message.error('Произошла ошибка при регистрации. Попробуйте позже.');
-      console.error('Error during registration:', error);
     }
-  };
+  }
 
   return (
     <div className='container' style={{ border: '1px solid silver', width: 500, marginTop: 200, padding: '50px 100px', borderRadius: 20 }}>

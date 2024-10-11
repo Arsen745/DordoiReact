@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Input, Button, message } from 'antd';
 import { useNavigate } from 'react-router-dom';
+import indexAdmin from '../../../api-admin/index-admin';
 
 const baseUrl = 'https://pythonmaster42.pythonanywhere.com/admin_user/activate/';
 
@@ -12,36 +13,54 @@ const PasswordType = () => {
     setOtp(e.target.value);
   };
 
+  // const handleActivation = async () => {
+  //   if (!otp || otp.length < 4) {
+  //     message.warning('Пожалуйста, введите 4-значный код.');
+  //     return;
+  //   }
+
+  //   try {
+  //     const response = await fetch(baseUrl, {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //       },
+  //       body: JSON.stringify({ activation_code: otp }),
+  //     });
+
+  //     const data = await response.json();
+  //     console.log(data);
+
+  //     if (data.response = true) {
+  //       message.success(data.message || 'Ваш аккаунт успешно активирован.');
+  //       navigate('/admin/createshop');
+  //     } else {
+  //       message.error(data.message || 'Ошибка активации');
+  //     }
+  //   } catch (error) {
+  //     message.error('Ошибка сети или сервера');
+  //   }
+  // };
   const handleActivation = async () => {
-    // Проверка на заполненность кода перед отправкой
     if (!otp || otp.length < 4) {
-      message.warning('Пожалуйста, введите 4-значный код.');
+      message.warning("Пожалуйства, введите 4-значный код")
       return;
     }
-
-    try {
-      const response = await fetch(baseUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ activation_code: otp }),
-      });
-
-      const data = await response.json();
-      console.log(data);
-
-      if (data.response = true) {
-        message.success(data.message || 'Ваш аккаунт успешно активирован.');
-        navigate('/admin/createshop');
-      } else {
-        // Сообщение об ошибке активации
-        message.error(data.message || 'Ошибка активации');
+     try {
+      const response = await indexAdmin.Activation(otp)
+      if(response.data.response === true) {
+        message.success('Успешно было активация')
       }
-    } catch (error) {
-      message.error('Ошибка сети или сервера');
-    }
-  };
+      
+     }
+     catch(error) {
+      message.error('Не правильный код попробуйте ещё раз')
+      
+     }
+
+  }
+   
+
 
   return (
     <div className='container' style={{ width: 500, marginTop: 200, border: '1px solid silver', padding: '50px 100px', borderRadius: 20 }}>

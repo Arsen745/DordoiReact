@@ -9,6 +9,8 @@ import AdminLogIn from '../Pages/admin/admin-login/AdminLogIn'
 import AdminRegister from '../Pages/admin/admin-register/AdminRegister'
 import PasswordType from '../Pages/admin/password-type/PasswordType'
 import ProfileAdmin from '../Pages/admin/profile-admin/ProfileAdmin'
+import ForgotPassword from '../Pages/admin/admin-forgotpawword/ForgotPassword'
+import ActivePassword from '../Pages/admin/admin-active-password/ActivePassword'
 const routes = [
     {
         path: '',
@@ -51,6 +53,14 @@ const routes = [
     {
         path: '/admin/createshop',
         element: <ProfileAdmin/>
+    },
+    {
+        path: '/admin/forgotpassword',
+        element: <ForgotPassword/>
+    },
+    {
+        path: '/admin/forgotpassword/active',
+        element: <ActivePassword/>
     },
     {
         path: '/admin',
