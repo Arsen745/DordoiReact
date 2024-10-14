@@ -10,6 +10,7 @@ import { MdHelp } from "react-icons/md";
 import { CiLogout } from "react-icons/ci";
 import './HeaderAdmin.css'
 import { UploadOutlined } from '@ant-design/icons';
+import { useNavigate } from 'react-router-dom';
 
 
 const { Header } = Layout;
@@ -47,7 +48,7 @@ const HeaderAdmin = () => {
         }
         return e?.fileList;
       };
-
+    const navigate = useNavigate()
     return (
         <Header style={headerStyle}>
             <div className="content-header-admin" style={{width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '0px 20px' }}>
@@ -63,6 +64,11 @@ const HeaderAdmin = () => {
                     </Button>
                     <Button type="primary" onClick={showDrawer}>
                         Настройки <IoMdSettings />
+                    </Button>
+                    <Button type="primary" onClick={() => {
+                        navigate('/admin/createshop')
+                    }}>
+                        Создать Магазин <IoMdSettings />
                     </Button>
                     <Drawer title="Настройки" onClose={onClose} open={open}>
                         <div className="settings" style={{ height: '100%' }}>

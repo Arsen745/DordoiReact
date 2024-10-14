@@ -50,6 +50,7 @@ const PasswordType = () => {
       const response = await indexAdmin.Activation(otp)
       if(response.data.response === true) {
         message.success('Успешно было активация')
+        navigate('/admin')
       }
       
      }
